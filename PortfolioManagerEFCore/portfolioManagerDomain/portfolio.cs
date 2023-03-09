@@ -15,5 +15,6 @@ namespace portfolioManagerDomain
         public string Description;
         public List<Equity> Equities { get; set; }
 
+
     }
 }
