@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace portfolioManagerDomain
 {
-    public class portfolio
+    public class Portfolio
     {
-        public int id;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
 
-        public string Name;
+        public string Name { get; set; }
 
-        public string Description;
+        public string Description { get; set; }
         public List<Equity> Equities { get; set; }
 
 

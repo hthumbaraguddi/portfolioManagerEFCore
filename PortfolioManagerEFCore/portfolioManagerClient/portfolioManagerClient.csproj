@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\portfolioManagerData\portfolioManagerData.csproj" />
+    <ProjectReference Include="..\portfolioManagerDomain\portfolioManagerDomain.csproj" />
+  </ItemGroup>
+
 </Project>
