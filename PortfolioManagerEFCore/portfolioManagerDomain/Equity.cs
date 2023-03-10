@@ -12,17 +12,21 @@ namespace portfolioManagerDomain
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+        public int EquityId { get; set; }
         public string Name { get; set; }
-
-        public string Description { get; set; }
-        public Equity() { }
+        public string Description { get; set; }       
         public DateTime PurchaseDate { get; set; }
         public double AcquiredPrice { get; set; }
         public double? SoldPrice { get; set;}
         public bool isSold { get; set; }
         public double? OverallPnL { get;set; }
+
+        [ForeignKey(nameof(PortfolioID))]
+        public Portfolio Portfolio { get; set; }
+
+        public int PortfolioID { get; set; }
+
+        public Equity() { }
 
     }
 }

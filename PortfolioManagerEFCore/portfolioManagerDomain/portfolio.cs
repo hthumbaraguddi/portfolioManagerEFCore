@@ -12,7 +12,7 @@ namespace portfolioManagerDomain
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int PortfolioId { get; set; }
 
         public string Name { get; set; }
 

@@ -10,9 +10,9 @@ namespace portfolioManagerData
 {
     public class PortfolioDataContext : DbContext
     {
-        public DbSet<Portfolio> Portfolios { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; } = null;
 
-        public DbSet<Equity> Equity { get; set; }
+        public DbSet<Equity> Equity { get; set; } = null;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
