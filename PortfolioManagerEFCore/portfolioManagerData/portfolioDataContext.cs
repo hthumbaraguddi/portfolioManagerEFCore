@@ -22,5 +22,12 @@ namespace portfolioManagerData
                 );
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Call this when domainObjects don't have any relationships defined 
+            // with mentioned property reference. 
+            modelBuilder.Entity<Portfolio>().HasMany<Equity>().WithOne();
+        }
+
     }
 }
