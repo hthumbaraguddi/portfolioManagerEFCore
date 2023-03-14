@@ -20,12 +20,17 @@ namespace portfolioManagerDomain
         public double? SoldPrice { get; set;}
         public bool isSold { get; set; }
         public double? OverallPnL { get;set; }
-        
-       public Portfolio Portfolio { get; set; }
+
+        //public Portfolio Portfolio { get; set; }
+
+        // [ForeignKey("PortfolioID")]
+        // public int PortfolioID { get; set; }
+
+    //For lazy loading
+        public virtual Portfolio Portfolio { get; set; }
 
         [ForeignKey("PortfolioID")]
-        public int PortfolioID { get; set; }
-
+        public virtual int PortfolioID { get; set; }
         public Equity() { }
 
     }

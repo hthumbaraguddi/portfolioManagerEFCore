@@ -17,8 +17,10 @@ namespace portfolioManagerDomain
         public string Name { get; set; }
 
         public string Description { get; set; }
-        public List<Equity> Equities { get; set; }
+        //public  List<Equity> Equities { get; set; }
 
 
+        //for lazy loading
+        public virtual List<Equity> Equities { get; set; }
     }
 }

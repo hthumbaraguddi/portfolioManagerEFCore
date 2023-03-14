@@ -20,7 +20,8 @@ namespace portfolioManagerData
         {
             optionsBuilder.UseSqlServer(
                 "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PortfolioDB; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-                ).LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
+                ).LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                .UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

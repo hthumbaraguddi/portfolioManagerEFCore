@@ -26,8 +26,9 @@ using portfolioManagerDomain;
 
 
 /*Loading or retriving the data*/
-//EagerLoadingPortfolioAndEquities();
-ExplicitLoadCollection();
+//EagerLoadingPortfolioAndEquities(); //You get data in one single shot
+//ExplicitLoadCollection(); // Explicit loading is on single object and its children. 
+LazyLoading();
 static void EagerLoadingPortfolioAndEquities()
 {
     PortfolioDataContext context = new PortfolioDataContext();
@@ -35,8 +36,8 @@ static void EagerLoadingPortfolioAndEquities()
 
     portfolios.ForEach(folio =>
     {
-    Console.WriteLine($"folioName:{folio.Name}");
-    folio.Equities.ForEach(e => Console.WriteLine( e.Name) );
+        Console.WriteLine($"folioName:{folio.Name}");
+        folio.Equities.ForEach(e => Console.WriteLine( e.Name) );
             
     });
 }
@@ -46,14 +47,27 @@ static void EagerLoadingPortfolioAndEquities()
 static void ExplicitLoadCollection()
 {
     PortfolioDataContext context = new PortfolioDataContext();
-    var folio =   context.Portfolios.FirstOrDefault(a => a.Name == "Saving");
-    //context.Entry(folio).Collection(a=>a.Equities).Load();
+    var folio = context.Portfolios.First(x=>x.Name== "Saving");
+    context.Entry(folio).Collection(a=>a.Equities).Load();
 
     //for any explicit filtering then 
     context.Entry(folio).Collection(a => a.Equities).Query().Where(b => b.Name == "INFY")
         .ToList().ForEach(e => Console.WriteLine(e.Name));
 
+}
 
+static void LazyLoading()
+{
+    /*Lazy loading is disabled by design*/
+
+    PortfolioDataContext context = new PortfolioDataContext();
+    var folio = context.Portfolios.ToList();
+
+    folio.ForEach(f=> 
+    {
+        Console.WriteLine(f.Name);
+        f.Equities.ForEach(f=> Console.WriteLine(f.Name));
+        });
 }
 static void EagerLoadingPortfolioAndEquitiesWithPaging()
 {
