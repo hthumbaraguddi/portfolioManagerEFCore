@@ -26,7 +26,10 @@ namespace portfolioManagerData
         {
             //Call this when domainObjects don't have any relationships defined 
             // with mentioned property reference. 
-            //modelBuilder.Entity<Portfolio>().HasMany<Equity>().WithOne();
+            modelBuilder.Entity<Portfolio>()
+                .HasMany<Equity>(folio => folio.Equities)
+                .WithOne(eqi => eqi.Portfolio)
+                .HasForeignKey(eqi => eqi.PortfolioID);
 
             //Seeding Some Data
 
