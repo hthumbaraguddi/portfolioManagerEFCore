@@ -5,10 +5,10 @@ using portfolioManagerData;
 using portfolioManagerDomain;
 
 //Little cheat, this will create a new DataBase
-using (PortfolioDataContext context = new PortfolioDataContext())
-{
-    context.Database.EnsureCreated();
-}
+//using (PortfolioDataContext context = new PortfolioDataContext())
+//{
+//    context.Database.EnsureCreated();
+//}
 
 
 //populate some data
@@ -26,7 +26,8 @@ using (PortfolioDataContext context = new PortfolioDataContext())
 
 
 /*Loading or retriving the data*/
-EagerLoadingPortfolioAndEquities();
+//EagerLoadingPortfolioAndEquities();
+ExplicitLoadCollection();
 static void EagerLoadingPortfolioAndEquities()
 {
     PortfolioDataContext context = new PortfolioDataContext();
@@ -40,6 +41,19 @@ static void EagerLoadingPortfolioAndEquities()
     });
 }
 
+
+
+static void ExplicitLoadCollection()
+{
+    PortfolioDataContext context = new PortfolioDataContext();
+    var folio =   context.Portfolios.FirstOrDefault(a => a.Name == "Saving");
+    context.Entry(folio).Collection(a=>a.Equities).Load();
+
+}
+static void EagerLoadingPortfolioAndEquitiesWithPaging()
+{
+
+}
 static void GetData()
 {
     PortfolioDataContext context = new PortfolioDataContext();
