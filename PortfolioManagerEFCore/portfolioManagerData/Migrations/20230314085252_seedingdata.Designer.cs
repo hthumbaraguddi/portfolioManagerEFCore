@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using portfolioManagerData;
 
@@ -11,9 +12,10 @@ using portfolioManagerData;
 namespace portfolioManagerData.Migrations
 {
     [DbContext(typeof(PortfolioDataContext))]
-    partial class PortfolioDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230314085252_seedingdata")]
+    partial class seedingdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

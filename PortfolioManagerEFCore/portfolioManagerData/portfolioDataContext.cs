@@ -26,7 +26,36 @@ namespace portfolioManagerData
         {
             //Call this when domainObjects don't have any relationships defined 
             // with mentioned property reference. 
-            modelBuilder.Entity<Portfolio>().HasMany<Equity>().WithOne();
+            //modelBuilder.Entity<Portfolio>().HasMany<Equity>().WithOne();
+
+            //Seeding Some Data
+
+            //single portfolio
+            modelBuilder.Entity<Portfolio>().HasData(
+                new Portfolio { Name = "Saving", Description = "Purely riskfree saving", PortfolioId = 1 });
+
+            //Multiple portfolio
+
+            var folioList = new List<Portfolio>()
+            {
+                new Portfolio { Name = "Investment", Description = "Little risk and high return", PortfolioId = 2 },
+                new Portfolio { Name = "ShortTermInvestment", Description = "High Risk", PortfolioId = 3 }
+            };
+
+            modelBuilder.Entity<Portfolio>().HasData(folioList );
+
+            //Add some Stocks to these portfolios
+
+            var stocks = new Equity[]
+            {
+                new Equity {EquityId=1, Name="TCS", AcquiredPrice=2000, Description="IT Stock", isSold=false, PurchaseDate=new DateTime(2019, 6, 7), PortfolioID=1},
+                new Equity {EquityId=2,Name="INFY", AcquiredPrice=1000, Description="IT Stock", isSold=false, PurchaseDate=new DateTime(2019, 6, 7), PortfolioID=1},
+                new Equity {EquityId=3,Name="INFY", AcquiredPrice=2000, Description="IT Stock", isSold=false, PurchaseDate=new DateTime(2019, 6, 7), PortfolioID=2},
+                new Equity {EquityId=4 ,Name="Adani", AcquiredPrice=400, Description="Energy", isSold=false, PurchaseDate=new DateTime(2019, 6, 7), PortfolioID=3}
+
+            };
+
+            modelBuilder.Entity<Equity>().HasData(stocks);
         }
 
     }
