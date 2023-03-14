@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
 using portfolioManagerData;
 using portfolioManagerDomain;
 
@@ -21,6 +22,23 @@ using (PortfolioDataContext context = new PortfolioDataContext())
 
 //Sorting orderBy and thenby
 SortingPortfolios();
+
+
+
+/*Loading or retriving the data*/
+EagerLoadingPortfolioAndEquities();
+static void EagerLoadingPortfolioAndEquities()
+{
+    PortfolioDataContext context = new PortfolioDataContext();
+    var portfolios = context.Portfolios.Include(a => a.Equities).AsSplitQuery().ToList();
+
+    portfolios.ForEach(folio =>
+    {
+    Console.WriteLine($"folioName:{folio.Name}");
+    folio.Equities.ForEach(e => Console.WriteLine( e.Name) );
+            
+    });
+}
 
 static void GetData()
 {
