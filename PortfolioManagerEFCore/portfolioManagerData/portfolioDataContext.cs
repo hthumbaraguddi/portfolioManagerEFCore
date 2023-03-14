@@ -26,10 +26,22 @@ namespace portfolioManagerData
         {
             //Call this when domainObjects don't have any relationships defined 
             // with mentioned property reference. 
-            modelBuilder.Entity<Portfolio>()
-                .HasMany<Equity>(folio => folio.Equities)
-                .WithOne(eqi => eqi.Portfolio)
-                .HasForeignKey(eqi => eqi.PortfolioID);
+            //modelBuilder.Entity<Portfolio>()
+            //    .HasMany<Equity>(folio => folio.Equities)
+            //    .WithOne(eqi => eqi.Portfolio)
+            //    .HasForeignKey(eqi => eqi.PortfolioID);
+
+
+            //Following the to define the relationship, One to Many with ForeignKey as null. 
+            //Its is like you got some positions but you don't have portfolio to assign. 
+            //ofcourse, the following you will also mention that propery (PortfolioID) as nullable. 
+            //modelBuilder.Entity<Portfolio>()
+            //    .HasMany<Equity>(folio => folio.Equities)
+            //    .WithOne(eqi => eqi.Portfolio)
+            //    .HasForeignKey(eqi => eqi.PortfolioID)
+            //    .IsRequired(false);
+
+
 
             //Seeding Some Data
 
@@ -45,7 +57,7 @@ namespace portfolioManagerData
                 new Portfolio { Name = "ShortTermInvestment", Description = "High Risk", PortfolioId = 3 }
             };
 
-            modelBuilder.Entity<Portfolio>().HasData(folioList );
+            modelBuilder.Entity<Portfolio>().HasData(folioList);
 
             //Add some Stocks to these portfolios
 
