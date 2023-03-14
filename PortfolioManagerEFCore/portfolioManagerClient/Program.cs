@@ -47,7 +47,12 @@ static void ExplicitLoadCollection()
 {
     PortfolioDataContext context = new PortfolioDataContext();
     var folio =   context.Portfolios.FirstOrDefault(a => a.Name == "Saving");
-    context.Entry(folio).Collection(a=>a.Equities).Load();
+    //context.Entry(folio).Collection(a=>a.Equities).Load();
+
+    //for any explicit filtering then 
+    context.Entry(folio).Collection(a => a.Equities).Query().Where(b => b.Name == "INFY")
+        .ToList().ForEach(e => Console.WriteLine(e.Name));
+
 
 }
 static void EagerLoadingPortfolioAndEquitiesWithPaging()
