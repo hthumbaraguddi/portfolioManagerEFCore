@@ -21,7 +21,7 @@ using (PortfolioDataContext context = new PortfolioDataContext())
 // GetPagedInformation();
 
 //Sorting orderBy and thenby
-SortingPortfolios();
+//SortingPortfolios();
 
 
 
